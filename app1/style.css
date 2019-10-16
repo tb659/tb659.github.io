@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    vertical-align: top;
+}
+
+a {
+    text-decoration: none;
+}
+
+.clearfix:after,
+.clearfix:before {
+    content: '';
+    display: table;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+/* 首页  头部*/
+.head {
+    width: 100%;
+    height: 82px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    float: left;
+    padding: 10px 40px;
+}
+
+.nav {
+    float: right;
+    padding: 10px 40px;
+}
+
+.list {
+    float: left;
+    padding: 0 20px;
+    line-height: 62px;
+}
+
+/* 轮播图 */
+.swiper-pagination-bullet {
+    width: 50px;
+    height: 5px;
+    border-radius: 0;
+}
+
+/* 首页内容 */
+.content {
+    min-height: 550px;
+    position: relative;
+}
+
+.cont_1 {
+    min-height: 500px;
+    background-color: #f7f7f7;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    margin-top: 0;
+    position: relative;
+    top: -100px;
+}
+
+.index_more {
+    width: 80px;
+    height: 46px;
+    background: #90af6b;
+    font-size: 30px;
+    text-align: center;
+    line-height: 46px;
+    color: #fff;
+    margin: 0 auto;
+}
+
+.cont_2 {
+    width: 100%;
+    min-height: 500px;
+    padding: 100px 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.cont_2_url {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    min-height: 500px;
+    background-image: url('https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS9hMzE0Y2MzMTMzYmEwZGQ5MTY1MDQ2ZjBhNmMwOWZmNy5qcGc_p_p100_p_3D.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    z-index: -1;
+}
+
+.index_ab_more {
+    padding: 10px;
+    background: #fff;
+    margin: 0 auto;
+}
+
+/* 页脚 */
+footer {
+    min-height: 150px;
+    background: #ccc
+}
+
+.m-li {
+    cursor: pointer;
+    line-height: 15px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 60px;
+    border-style: solid;
+    font-family: 微软雅黑;
+    font-size: 15px;
+    background-color: transparent;
+    color: #878787;
+    border-top: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    border-left: 0px solid transparent;
+    border-right: 0px solid transparent;
+    padding: 10px 0 10px 0;
+}
+
+.news {
+    max-width: 99.8%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ededed;
+}
+
+.news-t {
+    color: #000000;
+    font-size: 18px;
+    font-family: 微软雅黑;
+    line-height: 18px;
+    padding-bottom: 5px;
+    font-weight: normal;
+    color: #000000;
+    line-height: 18px;
+    vertical-align: top;
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.news-text {
+    color: #999999;
+    font-size: 13px;
+    font-family: 微软雅黑;
+    line-height: 22px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.news-a a {
+    color: #90af6b;
+    font-size: 14px;
+    font-family: 微软雅黑;
+}
+
+
+.m-img {
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+    vertical-align: middle;
+}
+
+.m-name {
+    padding-bottom: 15px;
+    font-weight: normal;
+    color: #555555;
+    line-height: 16px;
+    vertical-align: top;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+}
+
+.m-line {
+    height: 1px;
+    background: #ccc;
+    width: 100%;
+}
+
+.u-b {
+    width: 0%;
+    background: green;
+    height: 100%;
+}
+
+.m-num {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+}
