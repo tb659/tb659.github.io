@@ -107,11 +107,15 @@
             margin-right: 10px;
             margin-top: 5px;
         }
+
+        [v-cloak] {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" v-cloak>
         <div style="height: 50px;line-height:50px;text-align:center;background: rgb(241, 239, 239)">
             {{$route.params.type}}
         </div>
@@ -147,10 +151,12 @@
         <div class="no2_1">
             <div style="overflow: hidden;">
                 <div class="all">全部</div>
-                <div class="all" v-for="i in data.class" @click="index=i.name,get(i.name)" :style="{color:index == i.name?'green': ''}">
+                <div class="all" v-for="i in data.class" @click="index=i.name,get(i.name)"
+                    :style="{color:index == i.name?'green': ''}">
                     {{i.name}}
                 </div>
-                <div class="all" v-for="i in data.tag" @click="index=i.name,get2(i.name)" :style="{color:index == i.name?'green': ''}">
+                <div class="all" v-for="i in data.tag" @click="index=i.name,get2(i.name)"
+                    :style="{color:index == i.name?'green': ''}">
                     {{i.name}}
                 </div>
             </div>
