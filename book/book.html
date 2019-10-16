@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>书旗</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 100%;
+            min-height: 5rem;
+        }
+
+        .head {
+            height: 2.5rem;
+            line-height: 2.5rem;
+            font-size: 1rem;
+            background-color: #d8a5a5;
+            text-align: center;
+        }
+
+        .sort {
+            margin-bottom: 0.5rem;
+        }
+
+        .sort h3 {
+            height: 2rem;
+            line-height: 2rem;
+            padding-left: 0.5rem;
+            font-size: 0.9rem;
+            background-color: #ccc;
+        }
+
+        .sort .cont>div {
+            padding-left: 0.5rem;
+        }
+
+        .sort .cont>div .item {
+            padding-bottom: 0.25rem;
+            border-bottom: 0.6252px solid #000;
+        }
+
+        .sort .cont>div p {
+            line-height: 1rem;
+            font-size: 0.75rem;
+            padding: 0.25rem 0;
+        }
+
+        .sort .cont>div div span {
+            padding: 0.07501rem 0.12501rem;
+            display: inline-block;
+            margin-bottom: 0.12501rem;
+        }
+
+        .no2_1 {
+            padding: 30px;
+        }
+
+        .all {
+            padding: 5px 20px;
+            font-size: 16px;
+            float: left;
+        }
+
+        .img {
+            width: 84px;
+            height: 112px;
+            margin-right: 20px;
+        }
+
+        .title {
+            font-size: 16px;
+        }
+
+        .author {
+            font-size: 14px;
+            color: #ccc;
+            margin: 5px 0
+        }
+
+        .desc {
+            font-size: 12px;
+            color: #ccc;
+            height: 40px;
+            text-overflow: ellipsis;
+            line-height: 22px;
+            overflow: hidden;
+        }
+
+        .item {
+            padding: 20px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .tags {
+            padding: 0 2px;
+            font-size: 14px;
+            color: #ccc;
+            display: inline-block;
+            border: 1px solid;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div style="height: 50px;line-height:50px;text-align:center;background: rgb(241, 239, 239)">
+            {{$route.params.type}}
+        </div>
+        <router-view></router-view>
+
+    </div>
+    <template id='no1'>
+        <div>
+            <div v-for="(i, $i) in list">
+                <a :href="'#/no2/'+i.cid">
+                    {{i.title}}
+                </a>
+            </div>
+            <div class="sort" v-for="(j, $k, $j) in data">
+                <h3>{{$k == 'girl' ? '女生分类' : '男生分类'}}</h3>
+                <div class="cont">
+                    <div v-for='(i, $k) in j'>
+                        <div class="item" v-for='(k, $k, $i) in i'>
+                            <p>{{$k}}</p>
+                            <p>
+                                <span v-for='(l, $l) in k.list'>
+                                    <a :href="'#/no2/'+$k+'/'+k.cid+'/'+k.relatedName">{{l}}</a>
+                                    {{k.list.length - 1 == $l ? '' : '|'}}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id='no2'>
+        <div class="no2_1">
+            <div style="overflow: hidden;">
+                <div class="all">全部</div>
+                <div class="all" v-for="i in data.class" @click="index=i.name,get(i.name)"
+                    :style="{color:index == i.name?'green': ''}">
+                    {{i.name}}
+                </div>
+                <div class="all" v-for="i in data.tag" @click="index=i.name,get2(i.name)"
+                    :style="{color:index == i.name?'green': ''}">
+                    {{i.name}}
+                </div>
+            </div>
+            <div class="item" style="display: flex" v-for="i in arr">
+                <div>
+                    <img class="img" :src="i.cover" alt="">
+                </div>
+                <div>
+                    <div class="title">{{i.title}}</div>
+                    <div class="author">{{i.author}}</div>
+                    <div class="desc">{{i.desc}}</div>
+                    <div>
+                        <span class="tags" v-for="j in i.tags.split(',')">{{j}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</body>
+<script src="vue.js"></script>
+<script src="vue-resource.js"></script>
+<script src="vue-router.js"></script>
+<script>
+    var router = new VueRouter({
+        routes: [{
+            path: '/',
+            redirect: '/no1/分类'
+        }, {
+            path: '/no1/:type',
+            component: {
+                template: '#no1',
+                data() {
+                    return {
+                        data: [],
+                        list: [],
+                        bookid: 0
+                    }
+                },
+                methods: {
+
+                },
+                mounted() {
+                    this.$http.post(
+                        'http://walden1.shuqireader.com/webapi/rank/classrelation?_=1567241994072', {
+                            type: 1,
+                            timestamp: 1567241994069,
+                            sign: '75470caf247a15ff09789f452d317c91',
+                            shuqi_h5: '',
+                        }, {
+                            emulateJSON: true
+                        }).then(function (res) {
+                        // console.log(res);
+                        this.data = res.data.data;
+                    });
+                }
+            }
+        }, {
+            path: '/no2/:type/:cid/:name',
+            component: {
+                template: '#no2',
+                data() {
+                    return {
+                        index: 0,
+                        data: [],
+                        arr: []
+                    }
+                },
+                methods: {
+                    get(name) {
+                        this.$http.get(
+                            'http://read.xiaoshuo1-sm.com/novel/i.php?do=is_caterank&p=1&page=1&words=&shuqi_h5=&onlyCpBooks=1&tag=%E5%AE%A0%E6%96%87&sort=monthHot&_=1571238898014', {
+                                params: {
+                                    do: 'is_caterank',
+                                    p: 1,
+                                    page: 1,
+                                    words: '',
+                                    shuqi_h5: '',
+                                    onlyCpBooks: 1,
+                                    secondCate: name,
+                                    sort: 'monthHot',
+                                    _: 1571238898014
+                                }
+                            }).then(data => {
+                            console.log(data);
+                            this.arr = data.data.data
+                        });
+                    },
+                    get2(name) {
+                        this.$http.get(
+                            'http://read.xiaoshuo1-sm.com/novel/i.php?do=is_caterank&p=1&page=1&words=&shuqi_h5=&onlyCpBooks=1&tag=%E5%AE%A0%E6%96%87&sort=monthHot&_=1571238898014', {
+                                params: {
+                                    do: 'is_caterank',
+                                    p: 1,
+                                    page: 1,
+                                    words: '',
+                                    shuqi_h5: '',
+                                    onlyCpBooks: 1,
+                                    tag: name,
+                                    sort: 'monthHot',
+                                    _: 1571238898014
+                                }
+                            }).then(data => {
+                            console.log(data);
+                            this.arr = data.data.data
+                        });
+
+                    }
+                },
+                created() {
+                    var data = this.$route.params;
+                    var cid = this.$route.params.cid;
+                    var name = this.$route.params.name;
+                    this.$http.post(
+                        'http://walden1.shuqireader.com/webapi/rank/classrelation?_=1571220235971', {
+                            type: 2,
+                            cid: cid,
+                            timestamp: 1571220235968,
+                            sign: '4e97b9d8142361752e1e4fb5c0b48134',
+                            shuqi_h5: '',
+                        }, {
+                            emulateJSON: true
+                        }).then((data) => {
+                        console.log(data.data.data);
+                        this.data = data.data.data;
+                    });
+
+                    this.$http.get(
+                        'http://read.xiaoshuo1-sm.com/novel/i.php?do=is_caterank&p=1&page=1&words=&shuqi_h5=&onlyCpBooks=1&secondCate=%E7%8E%B0%E4%BB%A3%E8%A8%80%E6%83%85&sort=monthHot&_=1571222214835', {
+                            params: {
+                                do: 'is_caterank',
+                                p: 1,
+                                page: 1,
+                                words: '',
+                                shuqi_h5: '',
+                                onlyCpBooks: 1,
+                                secondCate: name,
+                                sort: 'monthHot',
+                                _: 1571222214835,
+                            }
+                        }).then(data => {
+                        console.log(data.data.data)
+                        this.arr = data.data.data
+                    })
+                }
+            }
+        }]
+    })
+    new Vue({
+        el: '#app',
+        router,
+
+    })
+</script>
+
+</html>
