@@ -115,19 +115,17 @@
 
 <body>
     <div id="app" v-cloak>
-        <div class="row">
-            <div class="head">
-                <!-- 首页logo  导航 -->
-                <div class="logo">
-                    <img style="width:80px;height:54px"
-                        src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvZjc0MTI0MDFiMDZjZjdjYmI4OTg5MTBjMTE2YzZlNzYucG5n.png"
-                        alt="">
-                </div>
-                <div class="clearfix nav">
-                    <div class="list" v-for="(i, $i) in arr">
-                        <a style="padding-bottom:10px;" :class="['line',index == $i? 'line_hover':'']" @click="btn($i)"
-                            :href="i.path">{{i.name}}</a>
-                    </div>
+        <div class="head">
+            <!-- 首页logo  导航 -->
+            <div class="logo">
+                <img style="width:80px;height:54px"
+                    src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvZjc0MTI0MDFiMDZjZjdjYmI4OTg5MTBjMTE2YzZlNzYucG5n.png"
+                    alt="">
+            </div>
+            <div class="clearfix nav">
+                <div class="list" v-for="(i, $i) in arr">
+                    <a style="padding-bottom:10px;" :class="['line',index == $i? 'line_hover':'']" @click="btn($i)"
+                        :href="i.path">{{i.name}}</a>
                 </div>
             </div>
         </div>
