@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script src="https://www.jq22.com/jquery/jquery-3.3.1.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+
+        .index {
+            width: 100%;
+            min-height: 650px;
+            background-image: url(http://57e243aaa779a.t73.qifeiye.com/qfy-content/uploads/2016/10/f549634402d680ae8cccd5a6039000b5.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: scroll;
+            background-position: 0 36%;
+            /* position: absolute;
+            z-index: -1;
+            top: 0; */
+        }
+
+        .no2 {
+            width: 100%;
+            min-height: 300px;
+            background-image: url('https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvMDViZjRkNzAxMDU2NTNkNjI2ODQ2NmY4ZGY4NzFmM2YuanBn.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: scroll;
+            background-position: 0 36%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: scroll;
+            background-position: 0 36%;
+            position: relative;
+        }
+
+        .fade-leave,
+        .fade-enter-to {
+            opacity: 1;
+        }
+
+        .fade-leave-active,
+        .fade-to-active {
+            transition: .3s
+        }
+
+        .fade-leave-to,
+        .fade-enter {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div style="height: 80px;line-height:80px;overflow: hidden; position: absolute;z-index: 100">
+            <div style="float: left;margin: 0 20px" v-for="i in list">
+                <a style="color:red" :href="i.path">{{i.name}}</a>
+            </div>
+        </div>
+        <div>
+            <router-view></router-view>
+        </div>
+    </div>
+    <template id='no1'>
+        <div class="index">
+            <div style=" width:100%; height:650px;position:absolute;z-index: 2; ;background-color: rgba(28,28,28,0.7);">
+            </div>
+            <div style="color: #fff;position: relative;z-index: 3;padding-top: 300px;">
+                <transition name="fade" v-for="(i, $i) in list">
+                    <div v-show="index == $i"
+                        style="width: 100%;position: absolute; left: 50%; transform:translateX(-50%)">
+                        <div style="text-align: center;"><span style="font-size:36px;"><span
+                                    style="font-family: 微软雅黑;"><span
+                                        style="display: inline-block; line-height: 1.6;">{{i.title}}</span></span></span>
+                        </div>
+
+                        <div style="text-align: center;"><span style="font-size:20px;"><span
+                                    style="display: inline-block; line-height: 1.6;"><span
+                                        style="font-family: arial;">{{i.info}}</span></span></span></div>
+
+                    </div>
+                </transition>
+
+            </div>
+        </div>
+    </template>
+    <template id='no2'>
+        <div style="width:100%; min-height: 300px;top: 0;z-index:0">
+            <div
+                style=" width:100%; height:300px;position: absolute;;z-index: 2; ;background-color: rgba(28,28,28,0.7);">
+            </div>
+            <div class="no2">
+
+            </div>
+            <div
+                style="padding-top:50px;min-height:550px;text-align: center;background-image: url('https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMDkvZGMyODkyNzE4YWUxZTY2NDFmNTlkNmU2YjRjN2JhNmIuanBn.jpg'); background-repeat:no-repeat; background-size:cover; background-attachment:scroll; background-position:0 23%;">
+                <span
+                    style="font-family:微软雅黑;font-size:34px;font-weight:normal;font-style:normal;color:#494949;">产品发布</span>
+                <span
+                    style="width: 50px;height: 3px;background-color: rgb(84, 215, 224);display: block;margin: 10px auto"></span>
+                <div style="margin:20px 0"><span>応捠捡换攴朰朸妀夲夳夵壱 売圢圤圥圦圧圪咐咑厺厼厽帄帇</span></div>
+                <div>
+                    <img src="https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMDkvNGQxZGJmMGU0MTg5YWUxYWU1ZjNmZDkyZjc3OWRhMGItNzY2eDUwMC5wbmc_p_p100_p_3D.png"
+                        alt="">
+                </div>
+            </div>
+        </div>
+    </template>
+    </template>
+    <template id='no3'>
+        <div>
+            <div style="margin-bottom: 50px">
+                <div
+                    style=" width:100%; height:300px;position: absolute;;z-index: 2; ;background-color: rgba(28,28,28,0.7);">
+                </div>
+                <div
+                    style="width:100%; height:300px;background-image: url('https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOTk4ZGE5MWY4MGZiNDg3NjU4MjI2MDQ1NzBhY2RmNDYuanBn.jpg'); background-repeat:no-repeat; background-size:cover; background-attachment:scroll; background-position:0 36%;">
+                </div>
+            </div>
+            <div class="row" style="min-height: 300px;margin: 0;">
+                <div class="col-md-3 col-xs-3">
+                    <div class="col-md-8" style="line-height: 36px; border-bottom:1px #ccc solid;" v-for="i in arr"
+                        @click="type=i">
+                        <span :style="{color:i==type?'blue':''}">
+                            {{i}}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-xs-8" v-if="type=='全部发布'">
+                    <div style="margin: 0;border-bottom:1px #ccc solid;display: flex;">
+                        <p class="h4" style="font-weight: 900;line-height: 36px;flex: 1;margin: 0 0 30px;">资讯发布</p>
+
+                    </div>
+                    <div class="row" style="margin: 0;padding: 10px ;" v-for="i in list_arr">
+                        <a :href="'#/'+i.name">
+                            <div class="col-md-4 col-xs-4">
+                                <img :src="i.img" alt="" width="100%">
+                            </div>
+                            <div class="col-md-7 col-xs-7">
+                                {{i.text}}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-xs-8" v-else>
+                    <div style="margin: 0;border-bottom:1px #ccc solid;display: flex;">
+                        <p class="h4" style="font-weight: 900;line-height: 36px;flex: 1;margin: 0 0 30px;">资讯发布</p>
+
+                    </div>
+                    <div class="row" style="margin: 0;padding: 10px ;" v-for="i in list_arr" v-show="type==i.type">
+
+                        <a :href="'#/no4/'+i.name">
+                            <div class="col-md-4 col-xs-4">
+                                <img :src="i.img" alt="" width="100%">
+                            </div>
+                            <div class="col-md-7 col-xs-7">
+                                {{i.text}}
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id='no4'>
+        <div>
+            <div style="margin-bottom: 20px">
+                <div
+                    style=" width:100%; height:300px;position: absolute;;z-index: 2; ;background-color: rgba(28,28,28,0.7);">
+                </div>
+                <div
+                    style="width:100%; height:300px;background-image: url('https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOTk4ZGE5MWY4MGZiNDg3NjU4MjI2MDQ1NzBhY2RmNDYuanBn.jpg'); background-repeat:no-repeat; background-size:cover; background-attachment:scroll; background-position:0 36%;">
+                </div>
+            </div>
+            <div style="padding: 0 200px">
+                <div @click="$router.go(-1)" class="btn" style="background: #ccc;border-radius:3px">后退</div>
+                <div v-for="i in list_arr" v-if="$route.params.name==i.name">
+                    <div style="font-size: 30px;font-weight:bold;line-height:80px">{{i.name}}</div>
+                    <div>
+                        <img :src="i.img" alt="">
+                    </div>
+                    <div style="padding: 20px 0">{{i.text}}</div>
+                </div>
+            </div>
+        </div>
+    </template>
+</body>
+<script src="vue.js"></script>
+<script src="vue-router.js"></script>
+<script>
+    var no1 = {
+        template: '#no1',
+        data() {
+            return {
+                index: 0,
+                list: [{
+                    title: '我们无法做到完美，但追求完美能让人卓越',
+                    info: 'Perfection’snot attainable, but if we chase it we can catch excellence.'
+                }, {
+                    title: '但追求完美能让人卓越',
+                    info: 'if we chase it we can catch excellence.'
+                }]
+            }
+        },
+        created() {
+            setInterval(() => {
+                this.index++;
+                if (this.index >= 2) {
+                    this.index = 0
+                }
+            }, 3000);
+        }
+    }
+    var no2 = {
+        template: '#no2'
+    }
+    var no3 = {
+        template: '#no3',
+        data() {
+            return {
+                type: '全部发布',
+                arr: ['全部发布', '公司新闻', '行业资讯'],
+                list_arr: [{
+                    type: '公司新闻',
+                    name: ' 北京130多家工业企业采取停限产措施应对雾霾',
+                    text: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+',
+                    img: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWVmMDY3ODQ0ZDIzZmFiZDA2Y2NkNjVkZGY2MWQyZDgtMTgweDEyMC5qcGc_p_p100_p_3D.jpg'
+                }, {
+                    type: '公司新闻',
+                    name: '三大能源停征价格调节基金为煤炭资源税改革清路',
+                    text: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+',
+                    img: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWFjMDViN2VmMzVkYmVhOGU5ZTI2MDQ2OGY4M2E1MjEtMTgweDEyMC5qcGc_p_p100_p_3D.jpg'
+                }, {
+                    type: '行业资讯',
+                    name: '排污费价格要高于治污成本',
+                    text: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+',
+                    img: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWFjMDViN2VmMzVkYmVhOGU5ZTI2MDQ2OGY4M2E1MjEtMTgweDEyMC5qcGc_p_p100_p_3D.jpg'
+                }]
+            }
+        },
+    }
+    var no4 = {
+        template: '#no4',
+        data() {
+            return {
+                type: '全部发布',
+                list_arr: [{
+                    type: '公司新闻',
+                    name: ' 北京130多家工业企业采取停限产措施应对雾霾',
+                    text: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+',
+                    img: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWVmMDY3ODQ0ZDIzZmFiZDA2Y2NkNjVkZGY2MWQyZDgtMTgweDEyMC5qcGc_p_p100_p_3D.jpg'
+                }, {
+                    type: '公司新闻',
+                    name: '三大能源停征价格调节基金为煤炭资源税改革清路',
+                    text: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+',
+                    img: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWFjMDViN2VmMzVkYmVhOGU5ZTI2MDQ2OGY4M2E1MjEtMTgweDEyMC5qcGc_p_p100_p_3D.jpg'
+                }, {
+                    type: '行业资讯',
+                    name: '排污费价格要高于治污成本',
+                    text: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+',
+                    img: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWFjMDViN2VmMzVkYmVhOGU5ZTI2MDQ2OGY4M2E1MjEtMTgweDEyMC5qcGc_p_p100_p_3D.jpg'
+                }]
+            }
+        }
+    }
+    var routes = [{
+        path: '/',
+        component: no1
+    }, {
+        path: '/no2',
+        component: no2
+    }, {
+        path: '/no3',
+        component: no3,
+
+    }, {
+        path: '/:name',
+        component: no4,
+
+    }, ]
+    var router = new VueRouter({
+        routes
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            list: [{
+                path: '#/',
+                name: '首页'
+            }, {
+                path: '#/no2',
+                name: '产品发布'
+            }, {
+                path: '#/no3',
+                name: '资讯发布'
+            }, ]
+        },
+        router
+    })
+</script>
+
+</html>
