@@ -28,14 +28,11 @@
         .index {
             width: 100%;
             min-height: 650px;
-            background-image: url(http://57e243aaa779a.t73.qifeiye.com/qfy-content/uploads/2016/10/f549634402d680ae8cccd5a6039000b5.jpg);
+            background-image: url('http://57e243aaa779a.t73.qifeiye.com/qfy-content/uploads/2016/10/f549634402d680ae8cccd5a6039000b5.jpg');
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: scroll;
             background-position: 0 36%;
-            /* position: absolute;
-            z-index: -1;
-            top: 0; */
         }
 
         .no2 {
@@ -50,7 +47,6 @@
             background-size: cover;
             background-attachment: scroll;
             background-position: 0 36%;
-            position: relative;
         }
 
         .fade-leave,
@@ -73,8 +69,8 @@
 <body>
     <div id="app" v-cloak>
         <div style="height: 80px;line-height:80px;overflow: hidden; position: absolute;z-index: 100">
-            <div style="float: left;margin: 0 20px" v-for="i in list">
-                <a style="color:red" :href="i.path">{{i.name}}</a>
+            <div style="float: left;margin: 0 20px" v-for="(i, $i) in list">
+                <a @click="path=i.path" :style="{color: path==i.path?'red':''}" :href="i.path">{{i.name}}</a>
             </div>
         </div>
         <div>
@@ -83,12 +79,12 @@
     </div>
     <template id='no1'>
         <div class="index">
-            <div style=" width:100%; height:650px;position:absolute;z-index: 2; ;background-color: rgba(28,28,28,0.7);">
+            <div style=" width:100%; height:650px;position:absolute; ;background-color: rgba(28,28,28,0.7);">
             </div>
-            <div style="color: #fff;position: relative;z-index: 3;padding-top: 300px;">
+            <div style="color: #fff;">
                 <transition name="fade" v-for="(i, $i) in list">
                     <div v-show="index == $i"
-                        style="width: 100%;position: absolute; left: 50%; transform:translateX(-50%)">
+                        style="width: 100%;position: absolute; left: 50%;top: 50%; transform:translateX(-50%)">
                         <div style="text-align: center;"><span style="font-size:36px;"><span
                                     style="font-family: 微软雅黑;"><span
                                         style="display: inline-block; line-height: 1.6;">{{i.title}}</span></span></span>
@@ -105,12 +101,11 @@
         </div>
     </template>
     <template id='no2'>
-        <div style="width:100%; min-height: 300px;top: 0;z-index:0">
-            <div
-                style=" width:100%; height:300px;position: absolute;;z-index: 2; ;background-color: rgba(28,28,28,0.7);">
-            </div>
+        <div style="width:100%; min-height: 300pxposition: relative;">
             <div class="no2">
 
+            </div>
+            <div style=" width:100%; height:300px;position: absolute;top:0;background-color: rgba(28,28,28,0.7);">
             </div>
             <div
                 style="padding-top:50px;min-height:550px;text-align: center;background-image: url('https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMDkvZGMyODkyNzE4YWUxZTY2NDFmNTlkNmU2YjRjN2JhNmIuanBn.jpg'); background-repeat:no-repeat; background-size:cover; background-attachment:scroll; background-position:0 23%;">
@@ -303,9 +298,10 @@
     var router = new VueRouter({
         routes
     })
-    new Vue({
+    var vm = new Vue({
         el: '#app',
         data: {
+            path: '#/',
             list: [{
                 path: '#/',
                 name: '首页'
@@ -317,7 +313,10 @@
                 name: '资讯发布'
             }, ]
         },
-        router
+        router,
+        created() {
+            this.path = '#' + this.$route.path;
+        }
     })
 </script>
 
