@@ -133,10 +133,10 @@
             </div>
             <div class="row" style="min-height: 300px;margin: 0;">
                 <div class="col-md-3 col-sm-3 col-xs-3">
-                    <div class="col-md-8" style="line-height: 36px; border-bottom:1px #ccc solid;" v-for="i in arr"
-                        @click="type=i">
-                        <span :style="{color:i==type?'blue':''}">
-                            {{i}}
+                    <div class="col-md-8" style="line-height: 36px; border-bottom:1px #ccc solid;"
+                        v-for="(i, $i) in arr" @click="type=$i">
+                        <span :style="{color:$i==type?'blue':''}">
+                            {{i}}{{type}}
                         </span>
                     </div>
                 </div>
@@ -146,33 +146,16 @@
                         <p class="h4" style="font-weight: 900;line-height: 36px;flex: 1;">资讯发布</p>
 
                     </div>
-                    <div v-if="type=='全部发布'">
-                        <div style="margin: 0;padding: 10px 0;overflow: hidden;" v-for="i in list_arr">
-                            <a :href="'#/'+i.name">
-                                <div class="col-md-4 col-xs-4" style="padding: 0">
-                                    <img :src="i.img" alt="" width="100%">
-                                </div>
-                                <div class="col-md-8 col-xs-8">
-                                    <p class="h3" style="margin: 0 0 20px">{{i.name}}</p>
-                                    <p style="font-size: 14px; color:#ccc">{{i.text}}</p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div v-else>
-                        <div class="row" style="margin: 0;padding: 10px 0;" v-for="i in list_arr" v-show="type==i.type">
-
-                            <a :href="'#/no4/'+i.name">
-                                <div class="col-md-4 col-xs-4" style="padding: 0">
-                                    <img :src="i.img" alt="" width="100%">
-                                </div>
-                                <div class="col-md-8 col-xs-8">
-                                    <p class="h3" style="margin: 0 0 20px">{{i.name}}</p>
-                                    <p style="font-size: 14px; color:#ccc">{{i.text}}</p>
-                                </div>
-                            </a>
-                        </div>
+                    <div style="margin: 0;padding: 10px 0;overflow: hidden;" v-for="i in list">
+                        <a :href="'#/'+i.name">
+                            <div class="col-md-4 col-xs-4" style="padding: 0">
+                                <img :src="i.img" alt="" width="100%">
+                            </div>
+                            <div class="col-md-8 col-xs-8">
+                                <p class="h3" style="margin: 0 0 20px">{{i.name}}</p>
+                                <p style="font-size: 14px; color:#ccc">{{i.text}}</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -230,22 +213,35 @@
     }
     var no3 = {
         template: '#no3',
+        computed: {
+            list() {
+                var list_s = []
+                for (let i = 0; i < this.list_arr.length; i++) {
+                    if (this.type == 0) {
+                        list_s = this.list_arr;
+                    } else if (this.type == this.list_arr[i].type) {
+                        list_s.push(this.list_arr[i]);
+                    }
+                }
+                return list_s
+            }
+        },
         data() {
             return {
-                type: '全部发布',
+                type: 0,
                 arr: ['全部发布', '公司新闻', '行业资讯'],
                 list_arr: [{
-                    type: '公司新闻',
+                    type: 1,
                     name: ' 北京130多家工业企业采取停限产措施应对雾霾',
                     text: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+',
                     img: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWVmMDY3ODQ0ZDIzZmFiZDA2Y2NkNjVkZGY2MWQyZDgtMTgweDEyMC5qcGc_p_p100_p_3D.jpg'
                 }, {
-                    type: '公司新闻',
+                    type: 1,
                     name: '三大能源停征价格调节基金为煤炭资源税改革清路',
                     text: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+',
                     img: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWFjMDViN2VmMzVkYmVhOGU5ZTI2MDQ2OGY4M2E1MjEtMTgweDEyMC5qcGc_p_p100_p_3D.jpg'
                 }, {
-                    type: '行业资讯',
+                    type: 2,
                     name: '排污费价格要高于治污成本',
                     text: '起飞页的工作团队是一群热爱互联网及软件事业的大伙伴和小伙伴，经验丰富、成熟稳定，基于对网站出版行业的热爱、对人人都能做出精美网站的向往，公司投入一千万元人民币，历时两年时间打造出起飞页平台。截至2015年底，在起飞页上创建的网站已超过10万+',
                     img: 'https://ccdn.goodq.top/caches/0aa02806352a2c565f61961c812e84a8/aHR0cHM6Ly81N2UyNDNhYWE3NzlhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTYvMTAvOWFjMDViN2VmMzVkYmVhOGU5ZTI2MDQ2OGY4M2E1MjEtMTgweDEyMC5qcGc_p_p100_p_3D.jpg'
